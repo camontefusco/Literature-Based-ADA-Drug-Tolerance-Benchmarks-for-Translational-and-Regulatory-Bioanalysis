@@ -1,0 +1,25 @@
+assay_method,bin,recovery_pct,source
+PandA,"(0.099, 1.0]",95.0,literature
+PandA,"(1.0, 10.0]",91.0,literature
+PandA,"(10.0, 50.0]",88.0,literature
+PandA,"(50.0, 100.0]",86.5,literature
+PandA,"(100.0, 200.0]",81.0,literature
+PandA,"(200.0, 800.0]",67.5,literature
+Standard,"(0.099, 1.0]",98.0,literature
+Standard,"(1.0, 10.0]",60.0,literature
+Standard,"(10.0, 50.0]",35.0,literature
+Standard,"(50.0, 100.0]",20.0,literature
+Standard,"(100.0, 200.0]",10.0,literature
+Standard,"(200.0, 800.0]",0.0,literature
+PandA,"(0.099, 1.0]",0.924657024686153,simulation
+PandA,"(1.0, 10.0]",0.9081065097227758,simulation
+PandA,"(10.0, 50.0]",0.8899429380543254,simulation
+PandA,"(50.0, 100.0]",0.8651485229572364,simulation
+PandA,"(100.0, 200.0]",0.8237041446553377,simulation
+PandA,"(200.0, 800.0]",0.7273150904095982,simulation
+Standard,"(0.099, 1.0]",0.7873933876147625,simulation
+Standard,"(1.0, 10.0]",0.6616094738930967,simulation
+Standard,"(10.0, 50.0]",0.474286725679068,simulation
+Standard,"(50.0, 100.0]",0.2757426147861819,simulation
+Standard,"(100.0, 200.0]",0.14740828931067512,simulation
+Standard,"(200.0, 800.0]",0.051543393606398674,simulation

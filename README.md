@@ -1,7 +1,7 @@
 # 📚 ADA Literature Benchmark
 
 Curated benchmark dataset for **anti-drug antibody (ADA)** assay drug tolerance, built from peer-reviewed sources.  
-This repository harmonizes literature data into a reproducible format to compare with simulated ADA assay recovery results (from [`ada-panda-mini`](https://github.com/camontefusco/ada-panda-mini)).
+This repository harmonizes literature data into a reproducible format to compare with simulated ADA assay recovery results.
 
 ---
 
@@ -48,7 +48,7 @@ ada-literature-benchmark/
 ## 🔬 Example Figure — Literature vs Simulation
 
 ### Literature Drug Tolerance Ranges
-![Literature drug tolerance ranges](https://raw.githubusercontent.com/camontefusco/Literature-Based-ADA-Drug-Tolerance-Benchmarks-for-Translational-and-Regulatory-Bioanalysis/refs/heads/main/figures/tolerance_ranges.png)
+![Literature drug tolerance ranges](https://raw.githubusercontent.com/camontefusco/Literature-Based-ADA-Drug-Tolerance-Benchmarks-for-Translational-and-Regulatory-Bioanalysis/refs/heads/main/reports/figures/tolerance_ranges.png)
 
 **Interpretation:**
 - *Standard bridging assays* lose recovery rapidly above ~10 µg/mL, dropping below 80% by ~100 µg/mL.  
@@ -58,7 +58,7 @@ ada-literature-benchmark/
 ---
 
 ### Literature vs Simulation Comparison
-![Comparison bars](https://raw.githubusercontent.com/camontefusco/Literature-Based-ADA-Drug-Tolerance-Benchmarks-for-Translational-and-Regulatory-Bioanalysis/refs/heads/main/figures/comparison_bars.png)
+![Comparison bars](https://raw.githubusercontent.com/camontefusco/Literature-Based-ADA-Drug-Tolerance-Benchmarks-for-Translational-and-Regulatory-Bioanalysis/refs/heads/main/reports/figures/comparison_bars.png)
 
 Shows alignment between **simulated recovery curves** and **empirical literature data**.  
 Deviations highlight assay-specific differences and provide benchmarks for model tuning.

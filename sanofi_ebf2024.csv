@@ -1,0 +1,14 @@
+publication_id,assay_method,drug_name,matrix,recovery_pct,drug_conc_ug_per_mL,figure_ref,notes
+sanofi_ebf2024,Standard,adalimumab,serum,98,0.1,Slide10,"bridging baseline"
+sanofi_ebf2024,Standard,adalimumab,serum,60,10,Slide10,"drug interference"
+sanofi_ebf2024,Standard,adalimumab,serum,35,50,Slide10,""
+sanofi_ebf2024,Standard,adalimumab,serum,20,100,Slide10,""
+sanofi_ebf2024,Standard,adalimumab,serum,10,200,Slide10,""
+sanofi_ebf2024,Standard,adalimumab,serum,0,800,Slide10,""
+sanofi_ebf2024,PandA,adalimumab,serum,95,0.1,Slide11,""
+sanofi_ebf2024,PandA,adalimumab,serum,90,10,Slide11,""
+sanofi_ebf2024,PandA,adalimumab,serum,88,50,Slide11,""
+sanofi_ebf2024,PandA,adalimumab,serum,85,100,Slide11,""
+sanofi_ebf2024,PandA,adalimumab,serum,80,200,Slide11,""
+sanofi_ebf2024,PandA,adalimumab,serum,65,800,Slide11,""
+

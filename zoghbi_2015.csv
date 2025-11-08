@@ -1,0 +1,7 @@
+publication_id,assay_method,drug_name,matrix,recovery_pct,drug_conc_ug_per_mL,figure_ref,notes
+zoghbi_2015,PandA,adalimumab,serum,95,0.5,Fig2,"example placeholder, replace with real digitized value"
+zoghbi_2015,PandA,adalimumab,serum,92,10,Fig2,""
+zoghbi_2015,PandA,adalimumab,serum,88,100,Fig2,""
+zoghbi_2015,PandA,adalimumab,serum,82,200,Fig2,""
+zoghbi_2015,PandA,adalimumab,serum,70,800,Fig2,""
+

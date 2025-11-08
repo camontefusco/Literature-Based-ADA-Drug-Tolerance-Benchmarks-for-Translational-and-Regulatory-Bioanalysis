@@ -3,6 +3,8 @@
 Curated benchmark dataset for **anti-drug antibody (ADA)** assay drug tolerance, built from peer-reviewed sources.  
 This repository harmonizes literature data into a reproducible format to compare with simulated ADA assay recovery results.
 
+![Banner](banner.png)
+
 ---
 
 ## 🎯 Purpose

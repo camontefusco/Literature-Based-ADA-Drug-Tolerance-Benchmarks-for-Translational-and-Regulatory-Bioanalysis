@@ -1,68 +1,111 @@
-# ada-literature-benchmark
-Curate and visualize **real-world ADA drug-tolerance data** (recovery vs free drug) to benchmark simulations.
+# 📚 ADA Literature Benchmark
 
-## 🎯 Goals
-- Extract **drug tolerance (µg/mL)** and **recovery (%)** from literature (tables/figures).
-- Normalize units and methods (Standard vs PandA-like).
-- Compare to simulated outputs from **ada-panda-mini**.
-- Export `benchmarks_lit.parquet` for integration into other repos.
+Curated benchmark dataset for **anti-drug antibody (ADA)** assay drug tolerance, built from peer-reviewed sources.  
+This repository harmonizes literature data into a reproducible format to compare with simulated ADA assay recovery results (from [`ada-panda-mini`](https://github.com/camontefusco/ada-panda-mini)).
 
-## 📦 Repo contents
-- `data/literature_sources/*.csv` — curated numeric points from papers
-- `notebooks/`
-  - **01_import_clean** — load CSVs → tidy/validate → `benchmarks_lit.parquet`
-  - **02_compare_to_sim** — overlay sim vs literature; pass/fail summaries
-  - **03_generate_summary_figs** — publication-level figures & tables
-- `reports/` — comparative CSV + figures
+---
 
-## 🔧 Data schema (long format)
-`data/literature_sources/*.csv` columns:
-- `publication_id` (str): e.g., `zoghbi_2015`
-- `assay_method` (str): `"Standard"` or `"PandA"` (or `"PandA-like"`)
-- `drug_name` (str): e.g., `adalimumab`
-- `matrix` (str): `serum` / `plasma`
-- `recovery_pct` (float): 0–100
-- `drug_conc_ug_per_mL` (float): free drug on x-axis
-- `figure_ref` (str): e.g., `Fig 3A`
-- `notes` (str): free text
+## 🎯 Purpose
 
-## ▶️ How to run
-```bash
-pip install -r requirements.txt
+To quantify and visualize real-world ADA assay **drug tolerance** and **recovery performance**, bridging:
+- Bioanalytical assay validation results from literature  
+- Simulation outputs from *PandA* and *Standard* assay models  
+- Regulatory-style interpretation thresholds (e.g. 80% PASS/ALERT)
+
+---
+
+## 🧩 Repository Structure
+
+```arduino
+ada-literature-benchmark/
+├── data/
+│ ├── literature_sources/
+│ │ ├── zoghbi_2015.csv
+│ │ ├── sanofi_ebf2024.csv
+│ │ └── ...
+│ ├── harmonized/
+│ │ └── benchmarks_lit.parquet
+│ └── recovery_standard.csv (from ada-panda-mini)
+│ └── recovery_panda.csv (from ada-panda-mini)
+│
+├── notebooks/
+│ ├── 01_import_clean.ipynb # ingest + harmonize raw literature data
+│ ├── 02_compare_to_sim.ipynb # align vs simulation recovery
+│ └── 03_generate_summary_figs.ipynb # produce figures & summaries
+│
+├── reports/
+│ ├── figures/
+│ │ ├── comparison_bars.png
+│ │ └── tolerance_ranges.png
+│ └── literature_vs_sim.csv
+│
+└── src/
+└── bench.py # helper functions for harmonization & QC
 ```
-# 1) Build harmonized parquet from literature CSVs
-jupyter notebook notebooks/01_import_clean.ipynb
 
-# 2) Compare to ada-panda-mini (set SIM_REPORTS path in notebook)
-jupyter notebook notebooks/02_compare_to_sim.ipynb
+---
 
-# 3) Generate figures and a summary CSV
-jupyter notebook notebooks/03_generate_summary_figs.ipynb
+## 🔬 Example Figure — Literature vs Simulation
 
-🔗 Upstream sim repo (for comparison)
+### Literature Drug Tolerance Ranges
+![Literature drug tolerance ranges](reports/figures/tolerance_ranges.png)
 
-ada-panda-mini → reports/tlgs.parquet, reports/benchmarks.parquet & recovery curves
+**Interpretation:**
+- *Standard bridging assays* lose recovery rapidly above ~10 µg/mL, dropping below 80% by ~100 µg/mL.  
+- *PandA assays* maintain ≥80% recovery up to ~200 µg/mL and only begin to drop near 1000 µg/mL.  
+- This validates the **drug masking correction** modeled in `ada-panda-mini`.
 
-📄 Outputs
+### Literature vs Simulation Comparison
+![Comparison bars](reports/figures/comparison_bars.png)
 
-data/harmonized/benchmarks_lit.parquet
+Shows alignment between **simulated recovery curves** and **empirical literature data**.  
+Deviations highlight assay-specific differences and provide benchmarks for model tuning.
 
-reports/literature_vs_sim.csv
+---
 
-reports/figures/comparison_bars.png
+## 🧾 Typical Output
 
-reports/figures/tolerance_ranges.png
+| Assay Method | Drug Tolerance (µg/mL, 80% Recovery) | PASS/ALERT |
+|---------------|--------------------------------------|-------------|
+| Standard | ~10 | ⚠️ ALERT |
+| PandA | ~200 | ✅ PASS |
 
-🧪 PASS/ALERT rule
+---
 
-PASS: recovery ≥ 80% at the exposure-relevant drug concentration window.
+## 🔗 Interoperability Context
 
-Otherwise ALERT.
+This dataset feeds into:
+- [`ada-panda-mini`](https://github.com/camontefusco/ada-panda-mini) — simulation of ADA masking & recovery
+- [`regulatory-style-clinpharm-report`](https://github.com/camontefusco/regulatory-style-clinpharm-report) — BAR/ISI-style regulatory summary
+- [`ADA-Immunogenicity-ClinPharm-CDISC-FHIR-Interoperability-Framework`](https://github.com/camontefusco/ADA-Immunogenicity-ClinPharm-CDISC-FHIR-Interoperability-Framework) — data standards & interoperability
 
-📚 Papers to include (examples)
+---
 
-Zoghbi et al., 2015 — PandA method (PEG + acid) drug tolerance
+## 🧠 Key Takeaways
 
-Sanofi EBF 2024 — practical defaults & tolerance ranges
+✅ Validates simulation-based ADA masking corrections  
+✅ Provides **literature-grounded PASS/ALERT thresholds**  
+✅ Ensures reproducibility and transparency  
+✅ Bridges **BioA → ClinPharm → Regulatory** understanding
 
-This is a curation exercise with standardized export for cross-repo benchmarking.
+---
+
+## 🧪 References
+
+1. **Zoghbi et al., AAPS J (2015)** — PandA method improves drug tolerance in ADA assays  
+2. **Sanofi EBF Workshop (2024)** — Practical defaults for PandA validation  
+3. **FDA Guidance (2019)** — *Immunogenicity Testing of Therapeutic Protein Products*
+
+---
+
+## 💡 Summary of Utility
+
+This repository provides a **trusted benchmark** for ADA assay performance — essential for:
+- Calibrating ADA detection simulations  
+- Supporting regulatory submissions  
+- Demonstrating bioanalytical assay robustness  
+- Building machine-readable assay metadata for CDISC / FHIR workflows
+
+---
+
+🧩 *Part of the integrated ADA–PandA → ClinPharm → Regulatory data ecosystem.*
